@@ -9,14 +9,14 @@ FactoryBot.define do
   end
 
   factory :developer, parent: :user do
-    type { "Developer" }
+    type { 'Developer' }
   end
 
   factory :manager, parent: :user do
-    type { "Manager" }
+    type { 'Manager' }
   end
 
   factory :admin, parent: :user do
-    type { "Admin" }
+    type { 'Admin' }
   end
 end

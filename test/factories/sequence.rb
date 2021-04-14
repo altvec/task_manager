@@ -3,7 +3,7 @@ FactoryBot.define do
     "string#{n}"
   end
   sequence(:email) { |n| "user#{n}@example.com" }
-  
+
   sequence(:name) { |n| "name #{n}" }
 
   sequence(:description) { |n| "description #{n}" }
