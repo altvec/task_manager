@@ -10,5 +10,5 @@ FactoryBot.define do
 
   sequence(:state) { |n| "state #{n}" }
 
-  sequence(:expired_at) { |n| "expired_at #{n}" }
+  sequence(:expired_at) { |n| (rand(n) + 1).days.from_now }
 end
