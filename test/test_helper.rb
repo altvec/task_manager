@@ -10,5 +10,5 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  include FactoryBot::Sytax::Methods
+  include FactoryBot::Syntax::Methods
 end
