@@ -5,7 +5,7 @@ FactoryBot.define do
     password { generate :string }
     email { generate :email }
     avatar { generate :string }
-    type
+    type { 'User' }
   end
 
   factory :developer, parent: :user do
