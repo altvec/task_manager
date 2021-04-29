@@ -8,5 +8,5 @@ FactoryBot.define do
 
   sequence(:description) { |n| "description #{n}" }
 
-  sequence(:expired_at) { |n| (rand(n) + 1).days.from_now }
+  sequence(:expired_at) { |n| (rand(n) + 1).days.from_now.to_date }
 end
