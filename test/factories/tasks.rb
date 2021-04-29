@@ -4,7 +4,15 @@ FactoryBot.define do
     description { generate :description }
     author factory: :manager
     assignee factory: :developer
-    state { :new_task }
     expired_at { generate :expired_at }
+    traits_for_enum(:state, [
+      'archived',
+      'in_code_review',
+      'in_development',
+      'in_qa',
+      'new_task',
+      'ready_for_release',
+      'released',
+    ])
   end
 end
