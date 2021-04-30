@@ -15,6 +15,7 @@
  */
 
 //=require material-design-lite/material.min.css
+//=require @lourenci/react-kanban/dist/styles.css
 
 body {
   min-height: 100vh;
