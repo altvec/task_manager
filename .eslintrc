@@ -37,7 +37,7 @@
       {
         "singleQuote": true,
         "trailingComma": "all",
-        "printWidth": 128
+        "printWidth": 120
       }
     ],
     "no-param-reassign": [
