@@ -167,7 +167,7 @@ const TaskBoard = () => {
       {mode === MODES.ADD && <AddPopup onCreateCard={handleTaskCreate} onClose={handleClose} mode={mode} />}
       {mode === MODES.EDIT && (
         <EditPopup
-          onLoadCard={loadTask}
+          onCardLoad={loadTask}
           onCardDestroy={handleTaskDestroy}
           onCardUpdate={handleTaskUpdate}
           onClose={handleClose}

@@ -14,8 +14,8 @@ const MODES = {
 };
 
 const Form = ({ errors, onChange, task, mode }) => {
-  const handleChangeTextField = (fieldName) => (event) => onChange({ ...task, [fieldName]: event.target.value });
-  const handleChangeSelect = (fieldName) => (user) => onChange({ ...task, [fieldName]: user });
+  const handleTextFieldChange = (fieldName) => (event) => onChange({ ...task, [fieldName]: event.target.value });
+  const handleSelectChange = (fieldName) => (user) => onChange({ ...task, [fieldName]: user });
 
   const styles = useStyles();
 
@@ -24,7 +24,7 @@ const Form = ({ errors, onChange, task, mode }) => {
       <TextField
         error={has('name', errors)}
         helperText={errors.name}
-        onChange={handleChangeTextField('name')}
+        onChange={handleTextFieldChange('name')}
         value={TaskPresenter.name(task)}
         label="Name"
         required
@@ -33,7 +33,7 @@ const Form = ({ errors, onChange, task, mode }) => {
       <TextField
         error={has('description', errors)}
         helperText={errors.description}
-        onChange={handleChangeTextField('description')}
+        onChange={handleTextFieldChange('description')}
         value={TaskPresenter.description(task)}
         label="Description"
         required
@@ -44,7 +44,7 @@ const Form = ({ errors, onChange, task, mode }) => {
         <UserSelect
           label="Author"
           value={TaskPresenter.author(task)}
-          onChange={handleChangeSelect('author')}
+          onChange={handleSelectChange('author')}
           isDisabled
           isRequired
           error={has('author', errors)}
@@ -54,7 +54,7 @@ const Form = ({ errors, onChange, task, mode }) => {
       <UserSelect
         label="Assignee"
         value={TaskPresenter.assignee(task)}
-        onChange={handleChangeSelect('assignee')}
+        onChange={handleSelectChange('assignee')}
         isRequired
         error={has('assignee', errors)}
         helperText={errors.assignee}
