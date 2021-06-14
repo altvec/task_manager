@@ -28,6 +28,7 @@ const AddPopup = ({ onClose, onCreateCard, mode }) => {
       setErrors(error || {});
 
       if (error instanceof Error) {
+        // eslint-disable-next-line no-alert
         alert(`Creation Failed! Error: ${error.message}`);
       }
     });
