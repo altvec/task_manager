@@ -105,7 +105,7 @@ const TaskBoard = () => {
   };
 
   const handleTaskCreate = (params) => {
-    const attributes = TaskForm.attributesToSubmit(params);
+    const attributes = TaskForm.serialize(params);
     return TasksRepository.create(attributes).then(({ data: { task } }) => {
       loadColumnInitial(TaskPresenter.state(task));
       setMode(MODES.NONE);
@@ -126,6 +126,7 @@ const TaskBoard = () => {
         loadColumnInitial(source.fromColumnId);
       })
       .catch((error) => {
+        // eslint-disable-next-line no-alert
         alert(`Move failed! ${error.message}`);
       });
   };
@@ -133,7 +134,7 @@ const TaskBoard = () => {
   const loadTask = (id) => TasksRepository.show(id).then(({ data: { task } }) => task);
 
   const handleTaskUpdate = (task) => {
-    const attributes = TaskForm.attributesToSubmit(task);
+    const attributes = TaskForm.serialize(task);
 
     return TasksRepository.update(TaskPresenter.id(task), attributes).then(() => {
       loadColumnInitial(TaskPresenter.state(task));
