@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import AsyncSelect from 'react-select/async';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -8,11 +7,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import UsersRepository from 'repositories/UsersRepository';
 import UserPresenter from 'presenters/UserPresenter';
+
 import useStyles from './useStyles';
 
 const UserSelect = ({ error, label, isClearable, isDisabled, isRequired, onChange, value, helperText }) => {
   const styles = useStyles();
-  const handleLoadOptions = (inputValue) =>
+  const handleOptionsLoad = (inputValue) =>
     UsersRepository.index({ q: { firstNameOrLastNameCont: inputValue } }).then(({ data }) => data.items);
 
   return (
@@ -22,7 +22,7 @@ const UserSelect = ({ error, label, isClearable, isDisabled, isRequired, onChang
         <div className={styles.select}>
           <AsyncSelect
             cacheOptions
-            loadOptions={handleLoadOptions}
+            loadOptions={handleOptionsLoad}
             defaultOptions
             getOptionLabel={UserPresenter.fullName}
             getOptionValue={UserPresenter.id}

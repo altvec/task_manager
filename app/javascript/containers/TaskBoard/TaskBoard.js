@@ -7,12 +7,11 @@ import Task from 'components/Task';
 import AddPopup from 'components/AddPopup';
 import EditPopup from 'components/EditPopup';
 import ColumnHeader from 'components/ColumnHeader';
-
 import TaskPresenter from 'presenters/TaskPresenter';
 import TasksRepository from 'repositories/TasksRepository';
 import TaskForm from 'forms/TaskForm';
-
 import useTasks from 'hooks/store/useTasks';
+
 import useStyles from './useStyles';
 
 const MODES = {
@@ -25,24 +24,24 @@ const TaskBoard = () => {
   const styles = useStyles();
   const { board, loadBoard, loadColumn, loadColumnMore } = useTasks();
   const [mode, setMode] = useState(MODES.NONE);
-  const [openedTaskId, setOpenedTaskId] = useState(null);
+  const [openedTaskId, setTaskIdOpened] = useState(null);
 
   useEffect(() => {
     loadBoard();
   }, []);
 
-  const handleOpenAddPopup = () => {
+  const handleAddPopupOpen = () => {
     setMode(MODES.ADD);
   };
 
-  const handleOpenEditPopup = (task) => {
-    setOpenedTaskId(task.id);
+  const handleEditPopupOpen = (task) => {
+    setTaskIdOpened(task.id);
     setMode(MODES.EDIT);
   };
 
-  const handleClosePopup = () => {
+  const handlePopupClose = () => {
     setMode(MODES.NONE);
-    setOpenedTaskId(null);
+    setTaskIdOpened(null);
   };
 
   const handleCardDragEnd = (task, source, destination) => {
@@ -77,39 +76,39 @@ const TaskBoard = () => {
     const attributes = TaskForm.serialize(task);
     return TasksRepository.update(TaskPresenter.id(task), attributes).then(() => {
       loadColumn(TaskPresenter.state(task));
-      handleClosePopup();
+      handlePopupClose();
     });
   };
 
   const handleTaskDestroy = (task) => {
     TasksRepository.destroy(TaskPresenter.id(task)).then(() => {
       loadColumn(TaskPresenter.state(task));
-      handleClosePopup();
+      handlePopupClose();
     });
   };
 
   return (
     <>
-      <Fab onClick={handleOpenAddPopup} className={styles.addButton} color="primary" aria-label="add">
+      <Fab onClick={handleAddPopupOpen} className={styles.addButton} color="primary" aria-label="add">
         <AddIcon />
       </Fab>
 
       <KanbanBoard
         disableColumnDrag
         onCardDragEnd={handleCardDragEnd}
-        renderCard={(card) => <Task onClick={handleOpenEditPopup} task={card} />}
+        renderCard={(card) => <Task onClick={handleEditPopupOpen} task={card} />}
         renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
       >
         {board}
       </KanbanBoard>
 
-      {mode === MODES.ADD && <AddPopup onCreateCard={handleTaskCreate} onClose={handleClosePopup} mode={mode} />}
+      {mode === MODES.ADD && <AddPopup onCardCreate={handleTaskCreate} onClose={handlePopupClose} mode={mode} />}
       {mode === MODES.EDIT && (
         <EditPopup
           onCardLoad={handleTaskLoad}
           onCardDestroy={handleTaskDestroy}
           onCardUpdate={handleTaskUpdate}
-          onClose={handleClosePopup}
+          onClose={handlePopupClose}
           cardId={openedTaskId}
           mode={mode}
         />
