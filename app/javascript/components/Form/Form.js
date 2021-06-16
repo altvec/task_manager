@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { has } from 'ramda';
-
 import TextField from '@material-ui/core/TextField';
-import UserSelect from 'components/UserSelect';
 
+import UserSelect from 'components/UserSelect';
 import TaskPresenter from 'presenters/TaskPresenter';
+
 import useStyles from './useStyles';
 
 const MODES = {

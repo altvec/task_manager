@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { isNil } from 'ramda';
-
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import Card from '@material-ui/core/Card';
@@ -14,6 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Form from 'components/Form';
 import TaskPresenter from 'presenters/TaskPresenter';
+
 import useStyles from './useStyles';
 
 const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate, mode }) => {
@@ -34,6 +34,7 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate, m
       setErrors(error || {});
 
       if (error instanceof Error) {
+        // eslint-disable-next-line no-alert
         alert(`Update Failed! Error: ${error.message}`);
       }
     });
@@ -45,6 +46,7 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate, m
     onCardDestroy(task).catch((error) => {
       setSaving(false);
 
+      // eslint-disable-next-line no-alert
       alert(`Destrucion Failed! Error: ${error.message}`);
     });
   };
