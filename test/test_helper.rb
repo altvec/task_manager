@@ -4,7 +4,7 @@ require 'rails/test_help'
 require 'coveralls'
 require 'simplecov'
 
-Coveralls.wear!('rails')
+SimpleCov.start('rails')
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
