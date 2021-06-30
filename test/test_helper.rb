@@ -4,7 +4,13 @@ require 'rails/test_help'
 require 'coveralls'
 require 'simplecov'
 
-SimpleCov.start('rails')
+SimpleCov.start('rails') do
+  if ENV['COVERAGE']
+    formatter Coveralls::SimpleCov::Formatter
+  end
+end
+
+Rails.application.eager_load!
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
