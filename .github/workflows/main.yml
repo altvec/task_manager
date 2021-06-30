@@ -17,4 +17,5 @@ jobs:
         env:
           COVERAGE: true
           RAILS_ENV: test
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: docker-compose --file docker-compose.ci.yml run ci
