@@ -64,6 +64,7 @@ group :test do
   gem 'webdrivers'
   # Coveralls ans simplecov
   gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
   gem 'coveralls', require: false
 end
 
